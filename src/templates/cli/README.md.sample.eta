@@ -1,0 +1,17 @@
+# <%= it.name %>
+
+[[_TOC_]]
+
+## Overview
+
+This is a <%= it.name %> cli.
+
+## Technology Stack
+
+- JavaScript
+- [command-line-args](https://github.com/75lb/command-line-args)
+- [command-line-usage](https://github.com/75lb/command-line-usage)
+- [projen](https://github.com/projen/projen)
+- GitHub
+- [eslint](https://eslint.org)
+

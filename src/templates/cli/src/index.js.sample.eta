@@ -1,0 +1,75 @@
+#!/usr/bin/env node
+
+// used as alternative to 'assert' or 'with' which are not
+// available in node 18, could be replaced with 
+// import {version} from '../package.json' assert {type: 'json'}
+// in the newer versions
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const version = require('../package.json');
+
+import commandLineArgs from 'command-line-args';
+import commandLineUsage from 'command-line-usage';
+import { sampleCommand } from './commands/sampleCommand/index.js'
+
+const globalOptionsDefinitions = [
+    { name: 'command', defaultOption: true },
+    {
+        name: 'config',
+        type: String,
+        description: 'Config path',
+    },
+    {
+        name: 'help',
+        alias: 'h',
+        type: Boolean,
+        description: 'Display this usage guide.',
+    },
+    {
+        name: 'version',
+        alias: 'v',
+        type: Boolean,
+        description: 'Print the version',
+    },
+    {
+        name: 'verbose',
+        type: Boolean,
+        description: 'Print debug information',
+    },
+];
+
+const globalHelp = [
+    {
+        header: 'CLI',
+        content: '',
+    },
+];
+
+export default function cli() {
+  const mainOptions = commandLineArgs(globalOptionsDefinitions, {
+      stopAtFirstUnknown: true,
+  });
+
+  let argv = mainOptions._unknown || [];
+
+  if (mainOptions.version) {
+      console.log(version);
+      process.exit(0);
+  }
+
+  if (!mainOptions.command) {
+      const usage = commandLineUsage(globalHelp);
+      console.log(usage);
+      process.exit(0);
+  }
+
+  const sampleCommands = ['sample', 'test'];
+  if (sampleCommands.indexOf(mainOptions.command) > -1) {
+      if (mainOptions.help) {
+          argv.push('--help');
+      }
+      const command = `${mainOptions.command} ${argv.join(' ')}`
+      sampleCommand(command)
+      process.exit(0);
+  }
+}

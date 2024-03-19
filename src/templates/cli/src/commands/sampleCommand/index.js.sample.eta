@@ -1,0 +1,44 @@
+import commandLineUsage from 'command-line-usage';
+import log from '../../logger/index.js'
+
+const logger = log.child({ component: 'CLI' });
+
+const sampleCommandDefinitions = [
+    {
+        name: 'sample',
+        alias: 's',
+        type: String,
+        typeLabel: '{underline sample}',
+        description: 
+            'Sample illustrative command'
+    },
+];
+
+const sampleHelp = [
+    {
+        header: 'Sample',
+        content: 'sample command example',
+    },
+    {
+        header: 'Synopsis',
+        content:
+            '$ cli <global options> sample|test <options>',
+    },
+    {
+        header: 'Options',
+        optionList: sampleCommandDefinitions,
+    },
+    {
+        header: 'Examples',
+        content: [
+            '$ zbs {bold sample}',
+        ],
+    },
+];
+
+export default async function sampleCommand(mainOptions, argv) {
+    logger.debug('Command: login', {mainOptions: mainOptions, argv: argv});
+    if (mainOptions.help) {
+        return { output: commandLineUsage(sampleHelp), error: null };
+    }
+}

@@ -1,0 +1,67 @@
+import { createLogger, format, transports } from 'winston';
+import jsonStringify from 'fast-safe-stringify';
+import config from '../config.js';
+
+// https://github.com/winstonjs/winston#logging
+// { error: 0, warn: 1, info: 2, verbose: 3, debug: 4, silly: 5 }
+
+// https://github.com/winstonjs/winston/issues/1135
+const developmentFormat = format.combine(
+    format.align(),
+    format.simple(),
+    format.splat(),
+    format.printf(function (info) {
+        const { level, message, component, ...args } = info;
+        const strArgs = Object.keys(args).length ? jsonStringify(args) : null;
+        return `[${
+            component ? component : ''
+        }] ${message} ${strArgs ? strArgs : ''}`;
+    })
+);
+
+const productionFormat = format.combine(
+    format.timestamp(),
+    format.printf(function (info) {
+        const { timestamp, level, message, component, ...args } = info;
+        const strArgs = Object.keys(args).length
+            ? `\t${jsonStringify(args)}`
+            : null;
+        return `${timestamp} ${level.toUpperCase()} ${component ? component : ''} ${message} ${strArgs ? strArgs : ''}`;
+    })
+);
+
+let logger;
+
+if (config.get('env') === 'production') {
+    logger = createLogger({
+        level: config.get('logLevel'),
+        format: productionFormat,
+        transports: [new transports.Console()],
+        exitOnError: false,
+    });
+} else if (config.get('env') === 'test') {
+    if (config.get('logLevel') === 'debug') {
+        logger = createLogger({
+            level: config.get('logLevel'),
+            format: developmentFormat,
+            transports: [new transports.Console()],
+            exitOnError: false,
+        });
+    } else {
+        logger = createLogger({
+            level: config.get('logLevel'),
+            format: developmentFormat,
+            transports: [new transports.Console()],
+            silent: true,
+        });
+    }
+} else {
+    logger = createLogger({
+        level: config.get('logLevel'),
+        format: developmentFormat,
+        transports: [new transports.Console()],
+        exitOnError: false,
+    });
+}
+
+export default logger;
