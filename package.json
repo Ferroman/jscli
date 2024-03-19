@@ -2,7 +2,7 @@
   "name": "@bfrankovskyi/jscli",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bfrankovskyi/jscli.git"
+    "url": "https://github.com/Ferroman/jscli.git"
   },
   "scripts": {
     "build": "npx projen build",

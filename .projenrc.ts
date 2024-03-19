@@ -11,7 +11,7 @@ const project = new cdk.JsiiProject({
   name: 'jscli',
   packageManager: javascript.NodePackageManager.NPM,
   packageName: '@bfrankovskyi/jscli',
-  repositoryUrl: 'https://github.com/bfrankovskyi/jscli.git',
+  repositoryUrl: 'https://github.com/Ferroman/jscli.git',
   projenrcTs: true,
   github: false,
   release: false,
