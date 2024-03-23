@@ -13,7 +13,7 @@ const project = new cdk.JsiiProject({
   packageName: '@bfrankovskyi/jscli',
   repositoryUrl: 'https://github.com/Ferroman/jscli.git',
   projenrcTs: true,
-  github: false,
+  github: true,
   release: false,
   autoMerge: false,
   gitignore: ['.DS_Store', '.npm/'],
