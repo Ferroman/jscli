@@ -104,6 +104,7 @@ export class JSCLIApp extends javascript.NodeProject {
       ...updateProjenNewArgs(options),
       packageManager: javascript.NodePackageManager.NPM,
       minNodeVersion: MIN_NODE_VERSION,
+      maxNodeVersion: MIN_NODE_VERSION,
       defaultReleaseBranch: 'main',
       projenrcJsOptions: {
         filename: '.projenrc.cjs', // keep projenrc CommonJS since it does not support ES
@@ -131,16 +132,16 @@ export class JSCLIApp extends javascript.NodeProject {
       ],
       devDeps: [
         ...(options.devDeps || []),
+        'semantic-release@21.1.2', // latest that supports Node 18
         '@semantic-release/changelog',
         '@semantic-release/exec',
         '@semantic-release/git',
-        '@semantic-release/github',
+        '@semantic-release/github@9.2.6', // latest that supports Node 18
         'chai',
         'eslint-plugin-import',
         'eslint-plugin-security',
         'eslint',
         'mocha',
-        'semantic-release',
         'shx',
         'nexe',
         'convict',

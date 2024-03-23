@@ -82,7 +82,7 @@
     "js-yaml"
   ],
   "engines": {
-    "node": ">= 18.12.0"
+    "node": ">= 18.19.1"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
