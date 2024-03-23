@@ -3,7 +3,7 @@ import log from '../../logger/index.js'
 
 const logger = log.child({ component: 'CLI' });
 
-const sampleCommandDefinitions = [
+export const sampleCommandDefinitions = [
     {
         name: 'sample',
         alias: 's',
@@ -22,7 +22,7 @@ const sampleHelp = [
     {
         header: 'Synopsis',
         content:
-            '$ cli <global options> sample|test <options>',
+            `$ <%= it.name %> <global options> ${sampleCommandDefinitions[0].name}|${sampleCommandDefinitions[0].alias} <options>`,
     },
     {
         header: 'Options',
@@ -31,14 +31,15 @@ const sampleHelp = [
     {
         header: 'Examples',
         content: [
-            '$ zbs {bold sample}',
+            '$ <%= it.name %> {bold sample}',
         ],
     },
 ];
 
 export default async function sampleCommand(mainOptions, argv) {
-    logger.debug('Command: login', {mainOptions: mainOptions, argv: argv});
+    logger.debug('Command: sample', {mainOptions: mainOptions, argv: argv});
+
     if (mainOptions.help) {
-        return { output: commandLineUsage(sampleHelp), error: null };
+       process.stdout.write(commandLineUsage(sampleHelp));
     }
 }
