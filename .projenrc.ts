@@ -20,7 +20,7 @@ const project = new cdk.JsiiProject({
   projenrcTs: true,
   github: true,
   githubOptions: {
-    workflows: false
+    workflows: false,
   },
   release: false,
   autoMerge: false,
