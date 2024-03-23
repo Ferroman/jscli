@@ -10,6 +10,7 @@
     },
     {
       "name": "@semantic-release/github",
+      "version": "9.2.6",
       "type": "build"
     },
     {
@@ -106,6 +107,7 @@
     },
     {
       "name": "semantic-release",
+      "version": "21.1.2",
       "type": "build"
     },
     {

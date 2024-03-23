@@ -3,15 +3,20 @@ import { NpmAccess, TrailingComma } from 'projen/lib/javascript'
 import { MIN_NODE_VERSION } from './src/constants'
 
 const project = new cdk.JsiiProject({
+  name: 'jscli',
   author: 'Bogdan Frankovskyi',
   authorAddress: 'bfrankovskyi@gmail.com',
+  stability: 'experimental',
+  description: "Projen External Project for command-arg-parse based JS CLI projects",
+  keywords: ["CLI", "projen"],
+  majorVersion: 1,
+  packageName: '@bfrankovskyi/jscli',
+  repositoryUrl: 'https://github.com/Ferroman/jscli.git',
+
   defaultReleaseBranch: 'main',
   jsiiVersion: '~5.3.0',
   minNodeVersion: MIN_NODE_VERSION,
-  name: 'jscli',
   packageManager: javascript.NodePackageManager.NPM,
-  packageName: '@bfrankovskyi/jscli',
-  repositoryUrl: 'https://github.com/Ferroman/jscli.git',
   projenrcTs: true,
   github: true,
   release: false,
@@ -40,9 +45,9 @@ const project = new cdk.JsiiProject({
   devDeps: [
     '@semantic-release/exec',
     '@semantic-release/git',
-    '@semantic-release/github',
+    '@semantic-release/github@9.2.6',
     '@semantic-release/npm',
-    'semantic-release',
+    'semantic-release@21.1.2',
     '@types/js-yaml',
   ],
   scripts: {
