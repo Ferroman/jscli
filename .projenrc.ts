@@ -19,6 +19,9 @@ const project = new cdk.JsiiProject({
   packageManager: javascript.NodePackageManager.NPM,
   projenrcTs: true,
   github: true,
+  githubOptions: {
+    workflows: false
+  },
   release: false,
   autoMerge: false,
   gitignore: ['.DS_Store', '.npm/'],
