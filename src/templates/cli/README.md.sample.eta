@@ -4,14 +4,17 @@
 
 ## Overview
 
-This is a <%= it.name %> cli.
+This is a `<%= it.name %>` cli.
+Put your description here
 
 ## Technology Stack
 
-- JavaScript
-- [command-line-args](https://github.com/75lb/command-line-args)
-- [command-line-usage](https://github.com/75lb/command-line-usage)
-- [projen](https://github.com/projen/projen)
-- GitHub
-- [eslint](https://eslint.org)
+- JavaScript (ES6)
+- [command-line-args](https://github.com/75lb/command-line-args) to parse command line arguments
+- [command-line-usage](https://github.com/75lb/command-line-usage) to show help messages
+- [projen](https://github.com/projen/projen) to manage project's maintenance code
+- GitHub Actions as CI
+- [eslint](https://eslint.org) to lint and format code
+- [nexe](https://github.com/nexe/nexe) to build binary
 
+Note: Project's NodeJS version is limited to the one supported by `nexe` 
