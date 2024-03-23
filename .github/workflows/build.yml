@@ -102,8 +102,6 @@ jobs:
         continue-on-error: true
       - name: Prepare Repository
         run: mv dist .repo
-      - name: Install Dependencies
-        run: cd .repo && npm ci
       - name: Create js artifact
         run: cd .repo && npx projen package:js
       - name: Collect js Artifact
